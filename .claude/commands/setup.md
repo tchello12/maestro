@@ -1,77 +1,89 @@
 ---
-description: First-run onboarding — detects what's missing and guides a new user through setting Maestro up
+description: First-run onboarding — walks template-by-template and asks targeted questions to fill EVERY field of each brain template as completely as possible
 ---
 
-You are running the **guided first-time setup**. Goal: take a brand-new user from a
-fresh template copy to a live system, with as little friction as possible. Be warm,
-concise, and decisive — a great onboarding, not a form. Ask **one thing at a time**;
-only ask what actually changes the outcome and assume sensible defaults for the rest.
+You are running the **guided first-time setup**. Goal: take a brand-new user from a fresh
+template to a live, *fully-populated* system. The method is a **template-completion loop**:
+go through each brain template that needs filling, and drive questions until every field is
+filled (or explicitly skipped) — then move to the next template.
 
-## 1. Diagnose (do this silently first, then show the result)
+## The core method — repeat for EACH template below
+For every target file:
+1. **Read the template** and enumerate its sections/fields (the `_(…)_` placeholders and
+   table cells). That list is your checklist for this file.
+2. **Ask in grouped batches**, not one field per turn — cluster related fields into one
+   question, with a quick example of the kind of answer that helps. Invite a brain-dump.
+3. **Map the answer to the fields.** For any field still empty, ask ONE targeted follow-up
+   ("still missing: peak hours and your slower period — when are those?"). Keep going until
+   every field is filled or the user says "skip" / "good enough".
+4. **Write the file**, then show it back for correction — never leave a raw dump, never
+   present a draft as final.
+5. **Confirm and move to the next template.**
+Track progress so the user can stop and re-run `/setup` later (resumable) — you only do
+what's still blank.
 
-Detect how far along setup is by scanning for first-run signals:
-- **Identity not set** — `CLAUDE.md` and `brain/profile/*` still contain placeholders
-  (`{{OWNER}}`, `{{SEU_NOME_COMPLETO}}`, `{{SEU_EMAIL}}`).
-- **Profile empty** — `brain/profile/working-preferences.md`, `bio.md`,
-  `case-history.md` are still templates / full of `_(…)_` placeholders.
-- **No development objectives** — `brain/development/objectives.md` is blank.
-- **No clients/projects** — `brain/clients/` and `brain/projects/` hold only `_template.md`.
-- **Integrations** — `brain/tasks/notion-sync.md` still says it needs first-use
-  confirmation; M365 not yet authenticated (you'll find out when briefing-analyst runs).
-- **No daily logs** — `brain/daily/` is empty.
+## Pacing & style (this is where the old setup failed)
+- **Batch, never dribble.** Don't ask name, then level, then office in three turns — ask a
+  whole block at once.
+- **Infer before asking.** You already have the work email (from the system) and today's
+  date; assume the firm is BCG unless told. Never ask what you can infer.
+- **Thorough, not interrogating.** Push for completeness (follow up on blanks) but stay
+  warm and quick; let the user say "skip" on anything.
+- Set expectations up front: "I'll walk you through ~5 files to fill in — identity & how
+  you work, your background, your case history, development goals, and tasks. I'll ask in
+  batches and we'll fill each one out properly. Say 'skip' anytime."
 
-Then present a short **setup diagnostic** as a checklist (✅ done / ⬜ pending), with a
-one-line "what this unlocks" per item, and say which one you'll tackle first. If
-everything is already done, say so and point them to `/morning` instead of re-running.
+## 0. Diagnose first
+Scan for first-run signals (placeholders `{{OWNER}}`/`{{SEU_NOME_COMPLETO}}`/`{{SEU_EMAIL}}`;
+profile/objectives still template; `clients|projects/` only `_template.md`; `notion-sync.md`
+unconfirmed; empty `brain/daily/`). Show a compact ✅/⬜ checklist of the files to fill, then
+start the loop. If everything's done, point them to `/morning` instead.
 
-## 2. Walk through the pending items, one at a time
+## The templates to complete, in order
 
-Go in this order, skipping anything already done (this command is **resumable** — a
-user can run `/setup` again anytime and you only do what's left):
+### A. `brain/profile/working-preferences.md` (most important — read every session)
+Start with identity (ONE batch: full name · role + level/tenure · office · primary
+practices · sector focus · typical client profile · does the team use Claude / are outputs
+shared) — pre-fill email and also write these into `bio.md` Identity + replace the
+`CLAUDE.md` placeholders. Then complete the rest of the file, batched: peak hours +
+protected time + slower period; output style (answer-first? MECE? bullets vs prose?
+high-level-then-drill?); tool stack (analysis/dashboards/models/slides/docs → the
+Output-standards table); delivery ritual; when to push back; default language; tone; what
+you never need explained (areas of fluency); any hard "never do X"; stakeholder-comms
+register; recurring reminders (timesheets/expenses/backlog); standing commitments. Follow
+up until each section has content.
 
-1. **Identity.** Ask for name, work email, role/level, office, and firm (default BCG).
-   Then replace every placeholder (`{{OWNER}}`, `{{SEU_NOME_COMPLETO}}`,
-   `{{SEU_EMAIL}}`) across `CLAUDE.md` and the brain. Confirm in one line.
+### B. `brain/profile/bio.md`
+**Offer the fast path first:** "Paste your CV/résumé text or LinkedIn About+Experience (or a
+file path) and I'll draft this — you just correct." Parse into every section: professional
+background (roles + dates + highlights), academic, leadership/activities, skills &
+languages, live priorities (e.g. MBA), personal interests / what energizes you, and the
+"Maestro context" (what to assume you're fluent in). If they'd rather talk, ask those
+sections in 2-3 batched questions. Fill every field; show back.
 
-2. **Working preferences** (highest leverage — read every session). Invite a
-   brain-dump ("how do you like to work? peak hours, output style, what I should never
-   explain to you, protected time…"). Structure it into
-   `brain/profile/working-preferences.md`. Show it back for a quick confirm — never
-   leave it as a raw dump.
+### C. `brain/profile/case-history.md`
+If a CV/deck was shared, seed entries from it. Then complete: one entry per past case
+(client-or-confidential · type · sector · year · role · summary · key skills · relevance),
+the summary table, and patterns/strengths (depth areas · quantitative/technical · sectors
+covered · potential gaps). Ask case-by-case; aim for their last several engagements.
 
-3. **Bio** — who they are beyond the role. Brain-dump → `brain/profile/bio.md`.
+### D. `brain/development/objectives.md`
+Best source = formal feedback: offer to run `/feedback` with their latest project feedback
+and last review. Otherwise capture 2-4 live objectives directly, each with
+what-good-looks-like + a daily practice cue. (Drives the daily nudge + Friday retro.)
 
-4. **Case history** — their trajectory, skills, spikes, gaps → `brain/profile/case-history.md`.
+### E. `brain/tasks/notion-sync.md` (only if they use Notion)
+If they keep tasks in Notion, probe their databases and fill the config (database + data
+source ID + property mapping); else mark it skipped and note `backlog.md` is enough.
 
-5. **Integrations** (optional but recommended — frame as "want the morning brief to
-   read your email + calendar?"):
-   - **Microsoft 365** — tell them Claude will prompt to authenticate the first time
-     the brief runs; nothing to do now beyond enabling the connector.
-   - **Notion** — if they keep tasks there, probe their databases and fill
-     `brain/tasks/notion-sync.md`; if not, mark it skipped.
-   - Firm connectors (Deckster, Knowledge Search, CapIQ) — note availability.
+## Then: integrations & current case
+- **Microsoft 365** — Claude will prompt to authenticate the first time the brief runs.
+- **Current case** — offer `/newcase <proposal deck path>` to populate `clients/` +
+  `projects/` and add a rich case-history entry.
 
-6. **Development objectives** — offer to run the `/feedback` flow with their latest
-   project feedback and last formal review, populating
-   `brain/development/objectives.md` (this drives the daily nudge + Friday retro).
-
-7. **Current case** — offer `/newcase <path to the proposal deck>` to mine the deck and
-   draft the client + project files.
-
-## 3. Principles while you do this
-
-- **One question at a time.** Don't front-load a questionnaire.
-- **Brain-dumps in, structured files out.** Accept messy input; you do the structuring,
-  then show it back (semi-final → confirm → final).
-- **Don't ask what you can infer.** Make a sensible call and state the assumption.
-- **Credentials:** if they want to store any, recommend a password manager over
-  plaintext in `brain/credentials/`; never put secrets in shared/synced locations.
-- **Confidentiality:** the brain holds client-confidential material — keep it local.
-
-## 4. Finish
-
-When the pending list is clear (or the user wants to stop), recap what's set up, note
-anything still optional/skipped, and tell them the next move: **open a fresh chat
-tomorrow and run `/morning` — you're live.**
+## Finish
+Recap each template as ✅ complete / 🟡 partial (name the gaps) / ⬜ skipped, then the next
+move: **open a fresh chat and run `/morning` — you're live.** Remind them `/setup` is
+resumable to finish any 🟡/⬜ later.
 
 User's optional context: $ARGUMENTS
