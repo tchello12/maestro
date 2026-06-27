@@ -20,6 +20,11 @@ or `brain/profile/*` still contain placeholders (`{{OWNER}}`, `{{SEU_NOME_COMPLE
 suggest they run **`/setup`** (the built-in guided onboarding that diagnoses what's
 missing and walks them through it). Skip this whole section once the system is personalized.
 
+**Resuming setup:** also check `brain/setup-progress.md` if it exists. If any file is still
+⬜ pending or 🟡 partial, the user is mid-onboarding — at session start, give them a one-line
+to-do reminder naming what's left and offer to resume `/setup`. Stop reminding once every
+item is ✅ done or ⏭️ skipped.
+
 ## 1. The brain (your memory) — READ BEFORE YOU ACT
 
 Everything you know lives in `brain/`. At the **start of every session**, before
