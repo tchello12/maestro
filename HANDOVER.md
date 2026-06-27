@@ -68,9 +68,19 @@ The plain claude.ai chat will not work — Maestro needs local files, sub-agents
    the brain will hold confidential material.
 
 2. **Open it in Claude Code.** Use the Claude Code desktop app, terminal, or IDE
-   extension and open the `maestro/` folder. Plain claude.ai chat will NOT work (no
-   local files, no sub-agents, no commands). On open, `CLAUDE.md` loads automatically
-   and Claude becomes Maestro — and it will offer to run `/setup`.
+   extension and open the folder that **directly contains `CLAUDE.md`**. Plain claude.ai
+   chat or the regular Claude app will NOT work (no local files, no sub-agents, no
+   commands). On open, `CLAUDE.md` loads automatically and Claude becomes Maestro — and
+   it will offer to run `/setup`.
+
+   ⚠️ **Folder nesting gotcha.** The zip creates a `maestro/` folder *inside* wherever you
+   extract it. If you made your own folder and extracted into it, the files are nested one
+   level deep (e.g. `…/your-folder/maestro/CLAUDE.md`) — open that inner `maestro/`, not the
+   outer one. **Rule:** the folder you open must show `CLAUDE.md` and `.claude/` at its root.
+   **Check you're right:** the first reply comes back *as Maestro* (not "I'm Claude Code, here
+   to help with software development"), and typing `/` shows `/setup`, `/morning`, etc. in the
+   autocomplete. If you only see generic commands or a dev-assistant intro, you opened the
+   wrong level — go one folder deeper.
 
 3. **Personalize the identity.** In `CLAUDE.md` (top) and across the system, replace the
    placeholders with your details:
