@@ -97,6 +97,13 @@
   .code .g{color:var(--accent-bright)}
   .code .d{color:#7d8aa5}
 
+  /* download button */
+  .dlbtn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#04130d;font-weight:600;font-size:15px;text-decoration:none;padding:13px 22px;border-radius:10px;margin:4px 0 10px;transition:background .2s,transform .2s}
+  .dlbtn:hover{background:var(--accent-bright);transform:translateY(-1px)}
+  .dlurl{display:block;font-family:var(--mono);font-size:12.5px;margin:0 0 18px}
+  .dlurl a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line-strong)}
+  .dlurl a:hover{color:var(--accent-bright)}
+
   /* callout */
   .note{display:flex;gap:13px;background:var(--accent-dim);border:1px solid rgba(0,163,108,.3);border-radius:var(--radius);padding:16px 18px;margin:6px 0 20px}
   .note .ico{flex:none;font-size:15px;line-height:1.5}
@@ -196,7 +203,8 @@
     <section id="download">
       <div class="sec-head"><div class="sec-num">02</div><h3>Baixar o Maestro</h3></div>
       <p>Baixe o ZIP mais recente direto do GitHub — este link sempre traz a versão atual:</p>
-      <div class="code"><span class="g">https://github.com/tchello12/maestro/releases/latest/download/maestro.zip</span></div>
+      <a class="dlbtn" href="https://github.com/tchello12/maestro/releases/latest/download/maestro.zip">⬇&nbsp;&nbsp;Baixar maestro.zip</a>
+      <span class="dlurl"><a href="https://github.com/tchello12/maestro/releases/latest/download/maestro.zip">github.com/tchello12/maestro/releases/latest/download/maestro.zip</a></span>
       <p>Clique com o botão direito no arquivo baixado → <strong>Extrair Tudo</strong>. Você terá <strong>uma</strong> pasta <span class="cmd">maestro</span> com o <span class="cmd">CLAUDE.md</span> dentro — coloque em algum lugar <strong>local</strong> (ex.: <span class="cmd">~/maestro/</span>).</p>
       <ul class="clean">
         <li><strong>Alternativa (git):</strong> <span class="cmd">git clone https://github.com/tchello12/maestro.git</span> — já cria a pasta pronta e deixa você puxar updates depois com <span class="cmd">git pull</span>.</li>
