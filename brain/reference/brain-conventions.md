@@ -19,7 +19,7 @@ not the way it arrived.
 ## Where things live (the map)
 | Folder | Holds | The question it answers |
 |---|---|---|
-| `brain/profile/` | working-preferences, bio, case-history | "Who is {{OWNER}} / how does he work?" |
+| `brain/profile/` | working-preferences, bio, case-history | "Who is Marcelo / how does he work?" |
 | `brain/development/` | objectives, retros, project-feedback, cdc | "How is he growing; what's the feedback?" |
 | `brain/clients/` | one file per client (people, org, sensitivities) | "What do we know about client X?" |
 | `brain/projects/` | one file per workstream + **Current truth** block | "Where does workstream X stand?" |
@@ -41,10 +41,16 @@ link their mother (the templates do this automatically). Mothers:
 not a folder of notes — you can always navigate from any node to the rest. When you
 create or close a file, connect it.
 
-The one guardrail that keeps connectivity from becoming noise: **connect at the file
-level, not the line level.** Each file declares its neighbours once (a `Related:` line or
-a links section) — you do *not* turn every mention into a link. Fewer stable links beat
-many stale ones (links you won't maintain rot).
+Two levels of connection (per [`D-005`](../decisions/decision-log.md)):
+- **The floor — no orphans:** every file declares ≥1 neighbour up front (a mother link or
+  a `Related:` line / links section), so no node is ever isolated even if its body
+  mentions nothing.
+- **In the body — references are links:** whenever a file *references* another `.md` file,
+  write it as a **direct link**, not a bare path or code-span — at least the first mention
+  per document. Use a markdown link with the path kept as code-span text (e.g.
+  ``[`brain/tasks/backlog.md`](brain/tasks/backlog.md)``): the path stays readable for agents,
+  and Obsidian draws the edge + updates it on rename. _(This supersedes the older "don't
+  turn mentions into links" guidance; rot is handled by linking once per doc + path-preserving links.)_
 
 How each file type connects:
 - **Client ↔ project** (both directions): each client lists/links its workstreams; each

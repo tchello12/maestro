@@ -4,6 +4,7 @@
 > view: full performance overview, trajectory, and forward development plan — the
 > synthesis ACROSS projects, not any single case.
 > Name: `YYYY-MM-DD-cdc.md`
+> ↑ Mother: [`_cdc.md`](_cdc.md) — the folder index.
 
 ## Outcome
 - **Overall assessment:** _(rating / standing vs. cohort, as communicated)_

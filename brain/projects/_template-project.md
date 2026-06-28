@@ -2,6 +2,7 @@
 
 > Copy to `brain/projects/<project-slug>.md`. Maintained by `work-logger`.
 > A "project" is a workstream or module you own (may map to a client engagement).
+> ↑ Mother: [`_projects.md`](_projects.md) — the folder index.
 
 ## Snapshot
 - **Client:** _(link to brain/clients/<slug>.md)_

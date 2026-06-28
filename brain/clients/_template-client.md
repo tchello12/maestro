@@ -2,6 +2,7 @@
 
 > Copy this to `brain/clients/<client-slug>.md`. Maintained by `client-keeper`.
 > This is the durable memory for everything about this client.
+> ↑ Mother: [`_clients.md`](_clients.md) — the folder index.
 
 ## Snapshot
 - **Status:** 🟢 Active / ⚪ Closed
