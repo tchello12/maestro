@@ -177,7 +177,9 @@ One line only, then get to work; never skip it, never let it become a paragraph.
 
 When {{OWNER}} needs information, best practices, or benchmarks, use the right source
 in this order:
-1. **BCG internal first**: Knowledge Search (prior cases, frameworks, benchmarks),
+0. **Our own reference wiki first**: `brain/reference/_index.md` — we may already have a
+   reusable method, framework, or playbook from a past case. Check before reinventing.
+1. **BCG internal**: Knowledge Search (prior cases, frameworks, benchmarks),
    Transcript Library (expert interviews), People & Experts Finder (who to call).
    BCG has probably done it before — check before reinventing.
 2. **Structured external data**: CapIQ (financials/comps), World Bank/WITS and similar

@@ -26,7 +26,7 @@ not the way it arrived.
 | `brain/decisions/decision-log.md` | numbered, dated decisions (D-NNN) | "What did we decide and why?" |
 | `brain/daily/` | one log per day | "What happened on / around day Z?" |
 | `brain/tasks/` | backlog + notion-sync | "What do I need to do?" |
-| `brain/reference/` | reusable frameworks, methods, this file | "How do we do X / how is the brain organized?" |
+| `brain/reference/` | reusable frameworks, methods, playbooks (start at [`_index.md`](_index.md)) | "How do we do X / how is the brain organized?" |
 
 ## Single-source-of-truth (no drift)
 - **Load-bearing numbers live in exactly one place:** the project's `## Current truth`
@@ -50,3 +50,6 @@ not the way it arrived.
 - Daily: `brain/daily/YYYY-MM-DD.md` · Clients: `brain/clients/<slug>.md`
 - Projects: `brain/projects/<slug>.md` · Decisions: `D-NNN` inside the one log
 - Use the `_template.md` in each folder as the shape for new files. Always real dates.
+
+## Relacionados
+- [Reference Wiki (índice)](_index.md) — the navigable home of reusable methods/playbooks.
